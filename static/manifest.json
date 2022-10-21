@@ -1,7 +1,7 @@
 {
   "name": "Send to engram",
   "description": "Quickly send websites or text selection to engram",
-  "version": "1.2",
+  "version": "1.3",
   "manifest_version": 3,
   "background": {
     "service_worker": "js/engram-web-extension.js"
