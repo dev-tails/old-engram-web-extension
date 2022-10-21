@@ -1,0 +1,28 @@
+{
+  "name": "@engram/web-extension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "build": "npm run build:extension && npm run build:popup",
+    "build:extension": "esbuild src/engram-web-extension.ts --bundle --minify --outfile=static/js/engram-web-extension.js",
+    "build:popup": "esbuild src/popup.ts --bundle --minify --outfile=static/js/popup.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/engramhq/web-extension.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/engramhq/web-extension/issues"
+  },
+  "homepage": "https://github.com/engramhq/web-extension#readme",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.0.199",
+    "esbuild": "^0.15.12"
+  }
+}

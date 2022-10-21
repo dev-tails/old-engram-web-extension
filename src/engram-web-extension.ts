@@ -1,8 +1,4 @@
-function formatDate(date) {
-  const offset = date.getTimezoneOffset();
-  const dateWithOffset = new Date(date.getTime() - offset * 60 * 1000);
-  return dateWithOffset.toISOString().split("T")[0];
-}
+import { createNote } from "./NoteApi";
 
 function setUpContextMenus() {
   chrome.contextMenus.create({
@@ -19,15 +15,11 @@ chrome.runtime.onInstalled.addListener(function () {
 
 chrome.contextMenus.onClicked.addListener(async function (itemData, tab) {
   const selectionText = itemData.selectionText;
+  if (!selectionText) {
+    return;
+  }
   
-  const url = "https://engram.xyzdigital.com/api/notes";
-  await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ body: selectionText, date: formatDate(new Date()) }),
-  });
+  await createNote(selectionText);
 
   const notificationId = 'success';
   chrome.notifications.create(notificationId, {
